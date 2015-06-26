@@ -1,17 +1,7 @@
 //
 //  main.m
 //  CaesarCipher
-//
-//  Created by Michael Kavouras on 6/21/15.
-//  Copyright (c) 2015 Mike Kavouras. All rights reserved.
-//
-
-
-//You are given a class called CaesarCipher with methods encode and decode
-//Being amateur codebreakers, we want to know if two distinct looking ciphers correspond to the same input message. Write a
-// method called codeBreaker, which accepts two cipher strings as paramaters and returns a boolean value which tells us
-// whether they are actually the same input message encoded using two different offsets. hint: the maximum offset is 25
-//There are multiple ways to do this. Try to come up with as many solutions as you can.
+//  Kaira Villanueva
 
 #import <Foundation/Foundation.h>
 

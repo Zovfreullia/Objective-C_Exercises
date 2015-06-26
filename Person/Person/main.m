@@ -2,9 +2,8 @@
 //  main.m
 //  Person
 //
-//  Created by Michael Kavouras on 6/21/15.
-//  Copyright (c) 2015 Mike Kavouras. All rights reserved.
-//
+//  Kaira Villanueva
+
 
 #import <Foundation/Foundation.h>
 
@@ -19,12 +18,21 @@
 - (void)setPhoneNumber:(NSString *)phoneNumber;
 - (NSString *)phoneNumber;
 
+- (BOOL)checkSameCity:(Person *)sameCity;
+
+- (Person *)registerChild;
+
+- (void)printThis;
+
+
 @end
 
 @implementation Person {
     NSString *_name;
     NSString *_phoneNumber;
     NSString *_city;
+    BOOL *_sameCity;
+    Person *_returnChild;
 }
 
 - (void)setName:(NSString *)name {
@@ -51,13 +59,80 @@
     return _phoneNumber;
 }
 
+
+- (BOOL)checkSameCity:(Person *)otherPerson{
+    
+    NSString *myCity = [self city];
+    
+    NSString *theirCity = [otherPerson city];
+    
+    if(self->_city == otherPerson->_city){
+        
+    }
+    
+    
+    if ([myCity isEqualToString: theirCity]){
+        NSLog(@"corect!");
+    } else {
+        NSLog(@"not correct!");
+    }
+    return YES;
+}
+
+- (Person *)registerChild {
+    Person* newBaby = [[Person alloc]init];
+    
+    [self setCityAndPhoneNumber:newBaby];
+    
+    return newBaby;
+}
+
+- (void)setCityAndPhoneNumber:(Person *)person {
+    [person setPhoneNumber:_phoneNumber];
+    [person setCity:_city];
+    [person setName:@"Baby"];
+}
+
+
+
+- (void)printThis{
+    NSLog(@"\nName: %@", _name);
+    NSLog(@"\nPhone Number: %@", _phoneNumber);
+    NSLog(@"\nLocation: %@", _city);
+}
+
 @end
 
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        
+        Person *kaira = [[Person alloc]init];
+        
+        Person *melanie = [[Person alloc]init];
+        
+        [melanie setName:@"Melanie"];
+        
+        [melanie setPhoneNumber:@"201-844-5641"];
+        
+        [melanie setCity:@"Portland, Oregon"];
+        
+        [melanie printThis];
+        
+        [kaira setName:@"Kaira"];
+        
+        [kaira setPhoneNumber:@"201-844-0021"];
+        
+        [kaira setCity:@"Portland, Oregon"];
+        
+        [kaira checkSameCity:melanie];
+        
+        Person *myFirstKid = [kaira registerChild];
+        
+        [myFirstKid printThis];
+        
+        [kaira printThis];
+        
     }
     return 0;
 }
