@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 Mike Kavouras. All rights reserved.
 //
 
+
+
+
 #import <Foundation/Foundation.h>
 
 // forward declarations
@@ -16,6 +19,7 @@
 @interface Contender : NSObject
 
 - (instancetype)initWithName:(NSString *)name;
+- (void)setContenderName:(NSString *)name;
     
 - (void)addVote;
 - (NSInteger)votesReceived;
@@ -23,6 +27,7 @@
 
 @end
 
+// Contender class
 @implementation Contender {
     NSInteger _votesReceived;
     NSString *_name;
@@ -49,6 +54,11 @@
     return _name;
 }
 
+- (void)setContenderName:(NSString *)name{
+    _name = name;
+}
+
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"%@ received %ld votes", _name, _votesReceived];
 }
@@ -56,6 +66,7 @@
 @end
 
 
+// Election class
 @interface Election : NSObject
 
 - (instancetype)initWithElectionName:(NSString *)name;
@@ -205,6 +216,45 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        
+        ElectionManager *electionManager = [[ElectionManager alloc]init];
+        
+        Election *election = [[Election alloc]init];
+        
+        Contender *lion = [[Contender alloc]init];
+        
+        Contender *tiger = [[Contender alloc]init];
+        
+        Contender *jaguar = [[Contender alloc]init];
+        
+        [election setElectionName:@"The Big Cat Election!"];
+        
+        [election addContender:lion];
+        
+        [election addContender:tiger];
+        
+        [election addContender:jaguar];
+        
+        [lion setContenderName:@"Lilly Diamond the Lion"];
+        
+        [tiger setContenderName:@"Tony the Tiger"];
+        
+        [jaguar setContenderName:@"McJagger the Jaguar"];
+        
+        [electionManager manage: election];
+        
+        [electionManager initiatePolling];
+        
+        [electionManager displayResults];
+        
+        
+        
+        
+        
+        
+//        [election initWithElectionName:@"Bob!"];
+        
+        
         
     }
     return 0;

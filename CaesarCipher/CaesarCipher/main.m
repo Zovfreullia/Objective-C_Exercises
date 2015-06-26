@@ -8,7 +8,9 @@
 
 
 //You are given a class called CaesarCipher with methods encode and decode
-//Being amateur codebreakers, we want to know if two distinct looking ciphers correspond to the same input message. Write a method called codeBreaker, which accepts two cipher strings as paramaters and returns a boolean value which tells us whether they are actually the same input message encoded using two different offsets. hint: the maximum offset is 25
+//Being amateur codebreakers, we want to know if two distinct looking ciphers correspond to the same input message. Write a
+// method called codeBreaker, which accepts two cipher strings as paramaters and returns a boolean value which tells us
+// whether they are actually the same input message encoded using two different offsets. hint: the maximum offset is 25
 //There are multiple ways to do this. Try to come up with as many solutions as you can.
 
 #import <Foundation/Foundation.h>
@@ -17,10 +19,18 @@
 
 - (NSString *)decode:(NSString *)string offset:(int)offset;
 - (NSString *)encode:(NSString *)string offset:(int)offset;
+- (BOOL)codeBreaker:(NSString *)codeOne
+                   :(NSString *)codeTwo;
+
+
+- (void)printThis;
 
 @end
 
-@implementation CaesarCipher
+@implementation CaesarCipher{
+
+}
+
 
 - (NSString *)encode:(NSString *)string offset:(int)offset {
     if (offset > 25) {
@@ -49,16 +59,46 @@
 }
 
 
-- (BOOL)codeBreaker:(NSString *)code1: (NSString *)code2{
-    BOOL checkCode = false;
+
+
+
+
+- (BOOL)codeBreaker:(NSString *)codeOne
+                   :(NSString *)codeTwo{
+    [self decode: codeOne offset: 5];
+    [self decode: codeTwo offset: 7];
     
-    return checkCode;
+    NSString *one = [self decode: codeOne offset: 5];
+    NSString *two = [self decode: codeTwo offset: 7];
+    
+    return([one isEqualToString: two]);
+
 }
+
+
 
 @end
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        
+        CaesarCipher *code = [[CaesarCipher alloc]init];
+        
+//        [code decode:@"Hey" int:10]
+        [code codeBreaker:@"HI:"
+                         :@"Heyll"];
 
+        
+        NSString *code1 = [code encode:@"Hello" offset:5];
+        NSString *code2 = [code encode:@"Hello" offset:7];
+        
+        [code codeBreaker:code1
+                         :code2];
+        
+        NSLog(@"%d", [code codeBreaker:code1 :code2]);
+        
+        
+        return 0;
     }
+    
 }
