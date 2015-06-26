@@ -49,10 +49,6 @@
 }
 
 
-
-
-
-
 - (BOOL)codeBreaker:(NSString *)codeOne
                    :(NSString *)codeTwo{
     [self decode: codeOne offset: 5];
@@ -60,6 +56,14 @@
     
     NSString *one = [self decode: codeOne offset: 5];
     NSString *two = [self decode: codeTwo offset: 7];
+    
+    for (int i = 0; i < 26; i++){
+        if ([codeOne isEqualToString:[self encode:codeTwo offset:i]]) {
+            return YES;
+            break;
+        }
+    }
+    
     
     return([one isEqualToString: two]);
 
@@ -73,14 +77,10 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
         CaesarCipher *code = [[CaesarCipher alloc]init];
-        
-//        [code decode:@"Hey" int:10]
-        [code codeBreaker:@"HI:"
-                         :@"Heyll"];
 
         
         NSString *code1 = [code encode:@"Hello" offset:5];
-        NSString *code2 = [code encode:@"Hello" offset:7];
+        NSString *code2 = [code encode:@"Hello" offset:10];
         
         [code codeBreaker:code1
                          :code2];
