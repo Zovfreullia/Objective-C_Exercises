@@ -12,13 +12,17 @@
 // forward declarations
 @class Contender;
 @class Election;
+@class ElectionManager;
+@class VotingSimulator;
+
+
 
 // Contender class
 @interface Contender : NSObject
 
 - (instancetype)initWithName:(NSString *)name;
 - (void)setContenderName:(NSString *)name;
-    
+
 - (void)addVote;
 - (NSInteger)votesReceived;
 - (NSString *)name;
@@ -212,45 +216,64 @@
 
 
 
+// Voting Simulator class
+
+@interface VotingSimulator: NSObject
+
+- (void)startVotingSimulator;
+
+@end
+
+
+
+@implementation VotingSimulator
+
+- (void)startVotingSimulator{
+    
+    ElectionManager *electionManager = [[ElectionManager alloc]init];
+    
+    Election *election = [[Election alloc]init];
+    
+    Contender *lion = [[Contender alloc]init];
+    
+    Contender *tiger = [[Contender alloc]init];
+    
+    Contender *jaguar = [[Contender alloc]init];
+    
+    [election setElectionName:@"The Big Cat Election!"];
+    
+    [election addContender:lion];
+    
+    [election addContender:tiger];
+    
+    [election addContender:jaguar];
+    
+    [lion setContenderName:@"Lilly Diamond the Lion"];
+    
+    [tiger setContenderName:@"Tony the Tiger"];
+    
+    [jaguar setContenderName:@"McJagger the Jaguar"];
+    
+    [electionManager manage: election];
+    
+    [electionManager initiatePolling];
+    
+    [electionManager displayResults];
+    
+}
+
+@end
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
-        ElectionManager *electionManager = [[ElectionManager alloc]init];
+
         
-        Election *election = [[Election alloc]init];
+        VotingSimulator *votingSim = [[VotingSimulator alloc]init];
         
-        Contender *lion = [[Contender alloc]init];
+        [votingSim startVotingSimulator];
         
-        Contender *tiger = [[Contender alloc]init];
-        
-        Contender *jaguar = [[Contender alloc]init];
-        
-        [election setElectionName:@"The Big Cat Election!"];
-        
-        [election addContender:lion];
-        
-        [election addContender:tiger];
-        
-        [election addContender:jaguar];
-        
-        [lion setContenderName:@"Lilly Diamond the Lion"];
-        
-        [tiger setContenderName:@"Tony the Tiger"];
-        
-        [jaguar setContenderName:@"McJagger the Jaguar"];
-        
-        [electionManager manage: election];
-        
-        [electionManager initiatePolling];
-        
-        [electionManager displayResults];
-        
-        
-        
-        
-        
-        
-//        [election initWithElectionName:@"Bob!"];
+    
         
         
         

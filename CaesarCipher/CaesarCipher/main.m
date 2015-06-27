@@ -13,8 +13,6 @@
                    :(NSString *)codeTwo;
 
 
-- (void)printThis;
-
 @end
 
 @implementation CaesarCipher{
@@ -63,7 +61,6 @@
             break;
         }
     }
-    
     
     return([one isEqualToString: two]);
 
