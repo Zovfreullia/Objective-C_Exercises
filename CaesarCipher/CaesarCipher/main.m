@@ -76,11 +76,10 @@ int main(int argc, const char * argv[]) {
         CaesarCipher *code = [[CaesarCipher alloc]init];
 
         
-        NSString *code1 = [code encode:@"Hello" offset:5];
+        NSString *code1 = [code encode:@"Hello" offset:20];
         NSString *code2 = [code encode:@"Hello" offset:10];
         
-        [code codeBreaker:code1
-                         :code2];
+        [code codeBreaker:code1:code2];
         
         NSLog(@"%d", [code codeBreaker:code1 :code2]);
         
